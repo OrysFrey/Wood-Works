@@ -1,0 +1,66 @@
+<h1>Mi Perfil</h1>
+<div class="container">
+    <div class="left-container">
+        <form [formGroup]="myForm" class="formulario">
+            <mat-form-field>
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id" readonly="true" class="input_form">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre_usuario" placeholder="Ingrese Nombre...">
+                <div *ngIf="myForm.get('nombre_usuario')?.hasError('required') && myForm.get('nombre_usuario')?.touched">
+                    <span style="color:red;">Este campo es obligatorio</span>
+                </div>
+            </mat-form-field>
+
+            <div class="telf-type">
+                <mat-form-field>
+                    <mat-label>Tipo</mat-label>
+                    <input matInput formControlName="type_usuario" readonly="true">
+                    <div *ngIf="myForm.get('type_usuario')?.hasError('required') && myForm.get('type_usuario')?.touched">
+                        <span style="color:red;">Este campo es obligatorio</span>
+                    </div>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Telefono</mat-label>
+                    <input matInput formControlName="telefono" placeholder="Ingrese Nombre...">
+                    <div *ngIf="myForm.get('telefono')?.hasError('required') && myForm.get('telefono')?.touched">
+                        <span style="color:red;">Este campo es obligatorio</span>
+                    </div>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field>
+                <mat-label>Correo</mat-label>
+                <input matInput formControlName="correo_usuario" placeholder="Ingrese Nombre...">
+                <div *ngIf="myForm.get('correo_usuario')?.hasError('required') && myForm.get('correo_usuario')?.touched">
+                    <span style="color:red;">Este campo es obligatorio</span>
+                </div>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password_usuario" placeholder="Ingrese Nombre...">
+                <div *ngIf="myForm.get('password_usuario')?.hasError('required') && myForm.get('password_usuario')?.touched">
+                    <span style="color:red;">Este campo es obligatorio</span>
+                </div>
+            </mat-form-field>
+
+            <div class="buttons-content">
+                <button mat-raised-button color="primary" (click)="saveChanges()" [disabled]="myForm.invalid">Guardar</button>
+                <button mat-raised-button color="secundary" (click)="volverHome()">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div class="right-container">
+        <div class="img-perfil">
+            <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="">
+        </div>
+        <div class="button-change">
+
+        </div>
+    </div>
+</div>
+  

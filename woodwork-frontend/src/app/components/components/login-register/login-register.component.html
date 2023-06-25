@@ -1,0 +1,47 @@
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#" [formGroup]="register" id="register">
+                <h1>Crear Cuenta</h1>
+                
+                <span style="margin:1rem; margin-top: 2rem;">Use su correo para registrarse</span>                
+                <input type="text" placeholder="Nombre" formControlName="nombre_usuario" id="name"/>
+                <select id="type" (change)="ChangeValue($event)" formControlName="type_usuario">
+                    <option value="" disabled selected>Selecciona un tipo</option>
+                    <option value="Cliente">Cliente</option>
+                    <option value="Carpintero">Carpintero</option>
+                </select>
+                <input type="text" placeholder="Telefono" formControlName="telefono" id="phone"/>
+                <input type="email" placeholder="Correo" formControlName="correo_usuario" id="correo"/>
+                <input type="password" placeholder="Contraseña" formControlName="password_usuario"/>
+                <button (click)="registro()" [disabled]="register.invalid">Registrarse</button>
+            </form>
+        </div>
+    
+        <div class="form-container sign-in-container">
+            <form action="#" [formGroup]="login">
+                <h1>Inica sesión</h1>
+                <input type="email" placeholder="Correo" formControlName="correo_usuario"/>
+                <input type="password" placeholder="Contraseña" formControlName="password_usuario" (keydown.enter)="inicioSesion()"/>
+                <p class="error" *ngIf="loginError">Correo o contraseña incorrecto</p>
+                <button type="button" (click)="inicioSesion()" [disabled]="login.invalid">Ingresar</button>
+            </form>
+        </div>
+    
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>!Bienvenido de vuelta!</h1>
+                    <p>Inicia sesión con tus credenciales para poder ingresar al aplicativo .</p>
+                    <button class="ghost" id="signIn" (click)="invertirSlide()">Inicio Sesión</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>!Hola, que tal!</h1>
+                    <p>Registre su cuenta y ordena el mueble a tus sueños</p>
+                    <button class="ghost" id="signUp" (click)="cambiarSlide()">Registro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

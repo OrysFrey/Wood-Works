@@ -1,0 +1,87 @@
+<h1>Perfil del Usuario</h1>
+<div class="container">
+    <div class="left-container">
+        <form [formGroup]="myForm" class="formulario">
+            <mat-form-field>
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id" readonly="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre_usuario" readonly="true">
+            </mat-form-field>
+
+            <div class="telf-type">
+                <mat-form-field>
+                    <mat-label>Tipo</mat-label>
+                    <input matInput formControlName="type_usuario" readonly="true">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Telefono</mat-label>
+                    <input matInput formControlName="telefono" readonly="true">
+                </mat-form-field>
+            </div>
+
+            <mat-form-field>
+                <mat-label>Correo</mat-label>
+                <input matInput formControlName="correo_usuario" readonly="true">
+            </mat-form-field>
+
+            <mat-form-field *ngIf="EsAdmin">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="password_usuario" readonly="true">
+            </mat-form-field>
+
+            <div class="buttons-content">
+                <button mat-raised-button color="secundary" (click)="volverTabla()">Regresar</button>
+            </div>
+        </form>
+    </div>
+    <div class="right-container">
+        <mat-tab-group>
+            <mat-tab label="Foto">
+                <div class="img-perfil">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="">
+                </div>
+            </mat-tab>
+            <mat-tab label="Proyectos" *ngIf="EsCarpenter">
+                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef>Id</th>
+                        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="nombre_producto">
+                        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                        <td mat-cell *matCellDef="let element"> {{element.nombre_producto}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="precio_producto">
+                        <th mat-header-cell *matHeaderCellDef>Precio</th>
+                        <td mat-cell *matCellDef="let element"> {{element.precio_producto}} </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                        <td mat-cell *matCellDef="let item">
+                            <a style="cursor: pointer;" routerLink="/dashboard-admin/ver-proyecto/3/{{item.id}}" *ngIf="EsAdmin"><mat-icon>visibility</mat-icon></a>
+                            <a style="cursor: pointer;" routerLink="/dashboard-customer/{{id_user}}/ver-proyecto/{{id_user}}/{{item.id}}" *ngIf="EsUser"><mat-icon>visibility</mat-icon></a>
+                            <!-- <a style="cursor: pointer;" (click)="delete=true" (click)="id_delete=item.id"><mat-icon>delete</mat-icon></a> -->
+                        </td>
+                    </ng-container>
+            
+                    <div class="title-colum">
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    </div> 
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </mat-tab>
+            <mat-tab label="Solicitudes" *ngIf="EsCustomer">
+                <div class="img-perfil">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6522/6522516.png" alt="">
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
