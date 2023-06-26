@@ -1,0 +1,74 @@
+<h1>Proyecto {{nombre_poyecto}}</h1>
+
+<div class="container">
+    <div class="left-container">
+        <form [formGroup]="myForm" class="formulario">
+            <mat-form-field *ngIf="admin">
+                <mat-label>Id</mat-label>
+                <input matInput formControlName="id" readonly="true">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre_producto" placeholder="Ingrese Nombre..." [readonly]="readonlyMode">
+                <div *ngIf="myForm.get('nombre_producto')?.hasError('required') && myForm.get('nombre_producto')?.touched">
+                    <span style="color:red;">Este campo es obligatorio</span>
+                </div>
+            </mat-form-field>
+
+            <div class="medidas_producto">
+                <mat-form-field>
+                    <mat-label>Ancho Producto</mat-label>
+                    <input type="number" matInput formControlName="ancho_producto" placeholder="Ingrese Medidas..." [readonly]="readonlyMode">
+                    <div *ngIf="myForm.get('ancho_producto')?.hasError('required') && myForm.get('ancho_producto')?.touched">
+                        <span style="color:red;">Este campo es obligatorio</span>
+                    </div>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Alto Producto</mat-label>
+                    <input type="number" matInput formControlName="alto_producto" placeholder="Ingrese Medidas..." [readonly]="readonlyMode">
+                    <div *ngIf="myForm.get('alto_producto')?.hasError('required') && myForm.get('alto_producto')?.touched">
+                        <span style="color:red;">Este campo es obligatorio</span>
+                    </div>
+                </mat-form-field>
+            </div>
+
+            
+                <mat-form-field>
+                    <mat-label>Largo Producto</mat-label>
+                    <input type="number" matInput formControlName="largo_producto" placeholder="Ingrese Medidas..." [readonly]="readonlyMode">
+                    <div *ngIf="myForm.get('largo_producto')?.hasError('required') && myForm.get('largo_producto')?.touched">
+                        <span style="color:red;">Este campo es obligatorio</span>
+                    </div>
+                </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Precio</mat-label>
+                <input type="number" matInput formControlName="precio_producto" placeholder="Ingrese Medidas..." [readonly]="readonlyMode">
+                <div *ngIf="myForm.get('precio_producto')?.hasError('required') && myForm.get('precio_producto')?.touched">
+                    <span style="color:red;">Este campo es obligatorio</span>
+                </div>
+            </mat-form-field>
+
+            <div class="buttons-content">
+                <button mat-raised-button color="primary" (click)="saveChanges()" [disabled]="myForm.invalid" *ngIf="god">Guardar</button>
+                <button mat-raised-button color="secundary" (click)="volverProject()">Cancelar</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="right-container">
+        <div class="img-producto">
+            <img src="{{img_proyecto}}" alt="">
+        </div>
+        <form [formGroup]="imgForm" class="formulario">
+            <mat-form-field>
+                <mat-label>Imagen del Proyecto</mat-label>
+                <input matInput formControlName="img_producto" placeholder="Ingrese URL..." [readonly]="readonlyMode">
+                <div *ngIf="imgForm.get('img_producto')?.hasError('required') && imgForm.get('img_producto')?.touched">
+                    <span style="color:red;">Este campo es obligatorio</span>
+                </div>
+            </mat-form-field>
+        </form>
+    </div>
+</div>

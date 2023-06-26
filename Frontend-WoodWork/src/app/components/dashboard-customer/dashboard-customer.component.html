@@ -1,0 +1,33 @@
+<section>
+    <div class="left-container">
+        <nav>
+            <div class="sidebar">
+                <a routerLink="/dashboard-customer/{{id}}"><mat-icon>home</mat-icon>Home</a>
+                <a routerLink="/dashboard-customer/{{id}}/mi-perfil/{{id}}"><mat-icon>person</mat-icon>Mi perfil</a>
+                <a routerLink="/dashboard-customer/{{id}}/carpenters-customers/{{id}}"><mat-icon>handyman</mat-icon>Carpinteros</a>
+                <a routerLink="/dashboard-customer/{{id}}/solicitudes-customers/{{id}}"><mat-icon>mail</mat-icon>Solicitud</a>
+                <a routerLink="/dashboard-customer/{{id}}/projects-customers/{{id}}"><mat-icon>table_bar</mat-icon>Proyectos</a>
+                <a routerLink="/dashboard-customer/{{id}}/questions-customers/{{id}}"><mat-icon>help_center</mat-icon>Preguntas</a>
+                <!-- <a routerLink="/dashboard-customer/{{id}}/mis-proyectos/{{id}}"><mat-icon>receipt_long</mat-icon>Presupuestos</a> -->
+                <!-- <a routerLink="/dashboard-admin/home-admin"><mat-icon>note</mat-icon>Reclamos</a> -->
+                <!-- <a routerLink="/dashboard-admin/home-admin"><mat-icon>note</mat-icon>Reclamos</a> -->
+                <a (click)="cerrar = true" routerLink="/home"><mat-icon>logout</mat-icon>Cerrar Sesión</a>
+            </div>
+        </nav>
+    </div>
+    <div class="right-container">
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="cerrar-sesion" *ngIf="cerrar">
+        <div class="left-sesion">
+            <h2>HASTA LUEGO</h2>
+            <h5>Esperamos que regrese pronto</h5>
+        </div>
+        <div class="right-sesion">
+            <p>¿Está seguro que desea cerrar sesion?</p>
+            <button (click)="cerrarSesion()" style="margin-top: 1rem;">Aceptar</button>
+            <button (click)="cerrar=false">Cancelar</button>
+        </div>
+    </div>
+</section>
